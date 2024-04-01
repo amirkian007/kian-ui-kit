@@ -1,4 +1,4 @@
-import React, { ComponentPropsWithoutRef, ElementType, FunctionComponent, HtmlHTMLAttributes } from "react";
+import { ElementType, FunctionComponent, HtmlHTMLAttributes } from "react";
 import { forwardRef } from "react";
 import { classFactory } from "../../utils/combineNames";
 
@@ -9,11 +9,12 @@ import {
   makeSizeProps,
   makeTagProps,
   makeThemeProps,
-  useSize,
-} from "../../system/propsFactory";
+ 
+} from "../../composables/propsFactory";
 import { convertToUnit } from "../../utils/Unit";
-
 import "./Vicon.sass";
+import { useSize } from "../../composables/size";
+import { useColor } from "../../composables/color";
 
 interface IconProps {
   color?: string;
@@ -26,7 +27,7 @@ interface IconProps {
 type IconValue = string;
 
 const defaultProps: IconProps = {
-  color: "red",
+  color: "black",
   disabled: false,
   start: false,
   end: false,
@@ -51,9 +52,9 @@ export const Icon = forwardRef<HTMLElement, IconProps>(function VIcon(props, ref
 
   const IconProps = makeVIconProps(props);
   const { sizeClasses } = useSize(IconProps,Icon.displayName!);
-  
+  const { colorClasses, colorStyles } = useColor(IconProps);
+ 
   const Tag = 'i' as unknown as KianComponent<'i'>
-
   return (
     <Tag
       ref={ref}
@@ -62,6 +63,7 @@ export const Icon = forwardRef<HTMLElement, IconProps>(function VIcon(props, ref
           "k-icon text-success",
           IconProps.icon,
           sizeClasses,
+          colorClasses,
           IconProps.classList
         ),
         {
@@ -75,6 +77,7 @@ export const Icon = forwardRef<HTMLElement, IconProps>(function VIcon(props, ref
           fontSize: !sizeClasses && convertToUnit(IconProps.size) || '',
           height: !sizeClasses && convertToUnit(IconProps.size) || '',
           width: !sizeClasses && convertToUnit(IconProps.size) || '',
+          ...colorStyles
         }
       }
       
