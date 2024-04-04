@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Varients } from "./varient";
+import { Varients } from "./varient.tsx";
 
 export function propsFactory<T, D>(props: T, defaults: D) {
   type FactoryreturnValue = { componentProps : T & D &{children?:ReactNode} , localProps: Object }
@@ -33,13 +33,15 @@ interface Size {
   size: string | number;
 }
 interface Tag {
-  tag: string;
+  tag: HtmlTagName;
 }
 interface Component {
   classList: string[];
   color:string
   disabled?:boolean
 }
+
+type HtmlTagName = {as : keyof HTMLElementTagNameMap}['as']
 // Define helper functions for other prop sets
 export function makeComponentProps(defautls?:Partial<Component>): Component {
   return {
@@ -57,7 +59,7 @@ export function makeSizeProps(size?: Sizes): Size {
   };
 }
 
-export function makeTagProps(options: { tag: string }): Tag {
+export function makeTagProps(options: { tag: Tag['tag'] }): Tag {
   return {
     tag: options.tag ?? "div",
   };
