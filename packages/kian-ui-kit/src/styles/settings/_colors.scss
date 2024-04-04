@@ -794,6 +794,22 @@ $text-on-grey: map-deep-merge(
   $text-on-grey
 );
 
+$hot: () !default;
+$hot: map-deep-merge(
+  (
+    'base': #ff69b4,
+  ),
+  $hot
+);
+
+$text-on-hot: () !default;
+$text-on-hot: map-deep-merge(
+  (
+    'base': map-get($shades, 'white'),
+  ),
+  $text-on-hot
+);
+
 $colors: () !default;
 $colors: map-deep-merge(
   (
@@ -816,7 +832,8 @@ $colors: map-deep-merge(
     'brown': $brown,
     'blue-grey': $blue-grey,
     'grey': $grey,
-    'shades': $shades
+    'shades': $shades,
+    'hot': $hot,
   ),
   $colors
 );
@@ -830,7 +847,7 @@ $text-on-colors: map-deep-merge(
     'deep-purple': $text-on-deep-purple,
     'indigo': $text-on-indigo,
     'blue': $text-on-blue,
-    'light-blue': $text-on-light-blue,
+    'light-blue': $text-on-light-blue, 
     'cyan': $text-on-cyan,
     'teal': $text-on-teal,
     'green': $text-on-green,
@@ -843,7 +860,8 @@ $text-on-colors: map-deep-merge(
     'brown': $text-on-brown,
     'blue-grey': $text-on-blue-grey,
     'grey': $text-on-grey,
-    'shades': $text-on-shades
+    'shades': $text-on-shades,
+    'hot' : $text-on-hot
   ),
   $text-on-colors
 );

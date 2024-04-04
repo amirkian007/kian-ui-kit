@@ -11,8 +11,6 @@
       $height: map.get($map, 'height') + (settings.$size-scale * $multiplier);
   
       .v-circle-progress--size-#{$sizeName} {
-        --v-progress-size: #{$size};
-        --v-progress-height: #{$height};
         height: $height;
         width: $height;
       }

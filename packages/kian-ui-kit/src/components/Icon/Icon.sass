@@ -3,7 +3,6 @@
 @use './variables' as *
 
 .k-icon
-  --v-icon-size-multiplier: 1
   align-items: center
   display: inline-flex
   font-feature-settings: 'liga'
@@ -28,15 +27,4 @@
 
   @each $name in settings.$sizes
     &--size-#{$name}
-      font-size: calc(var(--v-icon-size-multiplier) * #{map.get($icon-sizes, $name)})
-
-.k-icon__svg
-  fill: currentColor
-  width: 100%
-  height: 100%
-
-.k-icon--start
-  margin-inline-end: $icon-margin-start
-
-.k-icon--end
-  margin-inline-start: $icon-margin-end
+      font-size: #{map.get($icon-sizes, $name)}

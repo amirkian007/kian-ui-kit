@@ -1,0 +1,102 @@
+@use 'sass:math'
+@use 'sass:map'
+@use '../../styles/settings'
+@use '../../styles/tools'
+@use './mixins' as *
+@use './variables' as *
+
+.v-btn
+  align-items: center
+  border-radius: $button-border-radius
+  display: inline-grid
+  grid-template-areas: "prepend content append" 
+  grid-template-columns: max-content auto max-content
+  font-weight: $button-font-weight
+  justify-content: center
+  letter-spacing: $button-text-letter-spacing // messes the words in persian. :)
+  line-height: $button-line-height
+  max-width: $button-max-width
+  position: relative
+  text-decoration: none
+  text-indent: $button-text-letter-spacing
+  text-transform: $button-text-transform
+  transition-property: $button-transition-property
+  transition-duration: 0.28s
+  transition-timing-function: settings.$standard-easing
+  user-select: none
+  // border: $button-border
+  @at-root
+    @include button-sizes()
+    @include button-density('height', $button-density)
+
+  // @include tools.border($button-border...)
+  @include tools.variant($button-variants...)
+
+  &--icon
+    border-radius: $button-icon-border-radius
+    min-width: 0
+    padding: 0
+
+    @at-root &
+      @include button-density(('width', 'height'), $button-icon-density)
+
+  &--flat
+    box-shadow: none
+
+  &--block
+    display: flex
+    flex: 1 0 auto
+    min-width: 100%
+
+  &--disabled
+    pointer-events: none
+    opacity: $button-disabled-opacity
+
+  &--loading
+    pointer-events: none
+
+    .v-btn__content,
+    .v-btn__prepend,
+    .v-btn__append
+      opacity: 0
+
+.v-btn__loader
+  align-items: center
+  display: flex
+  height: 100%
+  justify-content: center
+  left: 0
+  position: absolute
+  top: 0
+  width: 100%
+
+.v-btn__content,
+.v-btn__prepend,
+.v-btn__append
+  align-items: center
+  display: flex
+  transition: $button-content-transition
+
+.v-btn__prepend
+  grid-area: prepend
+  margin-inline: $button-margin-start $button-margin-end
+
+.v-btn__append
+  grid-area: append
+  margin-inline: $button-margin-end $button-margin-start
+
+.v-btn__content
+  grid-area: content
+  justify-content: center
+  white-space: $button-white-space
+
+.v-btn__overlay
+  background-color: currentColor
+  border-radius: inherit
+  opacity: 0
+  transition: opacity .2s ease-in-out
+
+.v-btn__overlay,
+.v-btn__underlay
+  position: absolute
+  pointer-events: none

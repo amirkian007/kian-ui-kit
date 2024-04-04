@@ -1,0 +1,19 @@
+@use 'sass:map';
+@use '../settings';
+@use '../settings/variables';
+@use '../tools/functions' as *;
+
+@each $font_name , $font_font in variables.$typography {
+    .kian-font-#{$font_name}{
+        @each $font_type , $font_value in $font_font {
+            #{$font_type} : #{$font_value}
+        }
+    }
+}
+@each $border_name , $border_border in variables.$border-radiuss {
+    .#{$border_name}{
+        @each $border_type , $border_value in $border_border {
+            #{$border_type} : #{$border_value}
+        }
+    }
+}
