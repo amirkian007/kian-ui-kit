@@ -1,2 +1,2 @@
 # kian-ui-kit(react)
-things will be difrent
+things will be different
