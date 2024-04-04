@@ -1,4 +1,3 @@
-import { ElementType, FunctionComponent, HtmlHTMLAttributes } from "react";
 import { forwardRef } from "react";
 import { classFactory } from "../../utils/combineNames";
 
@@ -11,10 +10,11 @@ import {
   makeThemeProps,
 } from "../../composables/propsFactory";
 import { convertToUnit } from "../../utils/Unit";
-import "./Vicon.sass";
 import { useSize } from "../../composables/size";
-import { useColor, useTextColors } from "../../composables/color";
+import { useTextColors } from "../../composables/color";
 import { KianComponentProps, FactoryResultType, KianComponent } from "../../composables/factory.type";
+
+import "./Icon.sass";
 
 type Props = {
   color?: string;
@@ -35,8 +35,8 @@ const defaultProps: IconProps = {
 
 const makeVIconProps = propsFactory(
   {
-    ...makeSizeProps("x-large"),
-    ...makeComponentProps({color: "#F44336"}),
+    ...makeSizeProps("default"),
+    ...makeComponentProps(),
     ...makeTagProps({ tag: "i" }),
     ...makeThemeProps(),
   },
@@ -57,7 +57,7 @@ export const Icon = forwardRef<HTMLElement, ResolvedIconProps>(function VIcon(pr
       {...localProps}
       className={clsx(
         classFactory(
-          "k-icon text-success",
+          "k-icon",
           IconProps.icon,
           sizeClasses,
           textColorClasses,

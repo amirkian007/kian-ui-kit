@@ -21,11 +21,12 @@ interface Varienta {
   variant: Varients;
   color: string;
 }
+
 export function useVarient(props: Varienta, name: string) {
   const variantClasses = `${name}--variant-${props.variant}`;
   const { colorClasses, colorStyles } = useColor({
     [["elevated", "flat"].includes(props.variant) ? "background" : "text"]:
-      'hot',
+    props.color,
   });
 
   return { colorClasses, colorStyles, variantClasses };
@@ -35,8 +36,7 @@ export function genOverlays ( name: string) {
   return (
     <>
        <span key="overlay" className={ `${name}__overlay` } /> 
-
-      <span key="underlay" className={ `${name}__underlay` } />
+       <span key="underlay" className={ `${name}__underlay` } />
     </>
   )
 }

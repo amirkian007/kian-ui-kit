@@ -16,6 +16,7 @@ export interface SizeProps {
 export function includes(arr: readonly any[], val: any) {
   return arr.includes(val);
 }
+
 export function useSize(props: SizeProps, name: string) {
   let sizeClasses;
   let sizeStyles;

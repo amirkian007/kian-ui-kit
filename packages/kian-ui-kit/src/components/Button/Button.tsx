@@ -1,28 +1,30 @@
-import { forwardRef } from "react";
+// Types
 import {
   FactoryResultType,
   KianComponent,
-  KianComponentProps,
 } from "../../composables/factory.type";
 import {
   makeLoaderProps,
   makeVariantProps,
   propsFactory,
-} from "../../composables/propsFactory";
-import {
   makeComponentProps,
   makeSizeProps,
   makeTagProps,
   makeThemeProps,
 } from "../../composables/propsFactory";
+// React
+import { forwardRef } from "react";
+// utiles and hooks
 import { clsx } from "clsx";
 import { classFactory } from "../../utils/combineNames";
 import { genOverlays, useVarient } from "../../composables/varient";
 import { makeDensityProps, useDensity } from "../../composables/density";
-import "./Btn.sass";
 import { useSize } from "../../composables/size";
+// Components
 import { Icon } from "..";
 import { CircleProgressBar } from "../CircleProgressBar/CircleProgressBar";
+// Styles
+import "./Button.sass";
 
 interface Props {
   active?: boolean;
@@ -53,7 +55,7 @@ const makeButtonProps = propsFactory(
     ...makeTagProps({ tag: "button" }),
     ...makeThemeProps(),
     ...makeLoaderProps(),
-    ...makeVariantProps("outlined"),
+    ...makeVariantProps("flat"),
     ...makeDensityProps("default"),
   },
   defaultProps
@@ -63,10 +65,8 @@ type ResolvedIconProps = FactoryResultType<typeof makeButtonProps>;
 
 export const Button = forwardRef<HTMLElement, ResolvedIconProps>(
   function KButton(props, ref) {
-    // const { borderClasses } = useBorder(props)
 
     const { componentProps: buttonProps, localProps } = makeButtonProps(props);
-
     const { colorClasses, colorStyles, variantClasses } = useVarient(
       buttonProps,
       Button.displayName!
@@ -76,7 +76,7 @@ export const Button = forwardRef<HTMLElement, ResolvedIconProps>(
       Button.displayName!
     );
     const { densityClasses } = useDensity(buttonProps, Button.displayName!);
-    const Tag = (buttonProps.link ? 'a' : buttonProps.tag) as unknown as KianComponent<"a" | "button">;
+    const Tag = (buttonProps.link  ? "a"  : buttonProps.tag) as unknown as KianComponent<"a" | "button">;
 
     return (
       <Tag
@@ -92,7 +92,7 @@ export const Button = forwardRef<HTMLElement, ResolvedIconProps>(
           ),
           {
             "v-btn--active": buttonProps.active,
-            "v-btn--block":!buttonProps.icon && buttonProps.block,
+            "v-btn--block": !buttonProps.icon && buttonProps.block,
             "v-btn--disabled": buttonProps.disabled,
             "v-btn--elevated": buttonProps.elavated,
             "v-btn--flat": buttonProps.flat,
@@ -104,7 +104,9 @@ export const Button = forwardRef<HTMLElement, ResolvedIconProps>(
         style={{ ...colorStyles, ...sizeStyles }}
         {...localProps}
       >
-        {!buttonProps.icon && buttonProps.prependIcon &&(
+        {/* overlays for background colors on tonal and opecity hover */}
+        {genOverlays(Button.displayName!)}
+        {!buttonProps.icon && buttonProps.prependIcon && (
           <span key="prepend" className="v-btn__prepend">
             <Icon
               color={buttonProps.color}
@@ -112,11 +114,12 @@ export const Button = forwardRef<HTMLElement, ResolvedIconProps>(
             ></Icon>
           </span>
         )}
-        {genOverlays(Button.displayName!)}
+        {/* button main conent... */}
         <span className="v-btn__content" data-no-activator="">
           {!buttonProps.icon && buttonProps.children}
         </span>
-        {!buttonProps.icon && buttonProps.appendIcon &&(
+        {/* append icon */}
+        {!buttonProps.icon && buttonProps.appendIcon && (
           <span className="v-btn__append">
             <Icon
               color={buttonProps.color}
@@ -124,11 +127,14 @@ export const Button = forwardRef<HTMLElement, ResolvedIconProps>(
             ></Icon>
           </span>
         )}
+        {/* spinner loader */}
         <span key="loader" className="v-btn__loader">
-
-        { buttonProps.loading && <CircleProgressBar size={buttonProps.size}></CircleProgressBar> }
+          {buttonProps.loading && (
+            <CircleProgressBar size={buttonProps.size}></CircleProgressBar>
+          )}
         </span>
-        { buttonProps.icon &&(
+        {/* button icon */}
+        {buttonProps.icon && (
           <Icon
             color={buttonProps.color}
             icon={buttonProps.icon}

@@ -14,28 +14,15 @@ import { classFactory } from "../../utils/combineNames";
 import clsx from "clsx";
 import { useTextColors } from "../../composables/color";
 
-interface ProgressProps {
-  size: number;
-}
-
 type Props = {
-  color?: string;
-  disabled?: boolean;
-  start?: boolean;
-  end?: boolean;
-  icon: string;
+
 };
 
-type IconProps = KianComponentProps<Props>;
+type CircleProgressProps = KianComponentProps<Props>;
 
-const defaultProps: IconProps = {
-  disabled: false,
-  start: false,
-  end: false,
-  icon: "default-icon",
-};
-makeComponentProps;
-const makeVIconProps = propsFactory(
+const defaultProps: CircleProgressProps = {};
+
+const makeCircleProgressProps = propsFactory(
   {
     ...makeSizeProps("default"),
     ...makeComponentProps(),
@@ -43,11 +30,11 @@ const makeVIconProps = propsFactory(
   defaultProps
 );
 
-type ResolvedIconProps = FactoryResultType<typeof makeVIconProps>;
+type ResolvedIconProps = FactoryResultType<typeof makeCircleProgressProps>;
 
 export const CircleProgressBar = forwardRef<SVGElement, ResolvedIconProps>(
   function KCircleProgressaBar(props, red) {
-    const CircleProgressBarss = makeVIconProps(props);
+    const CircleProgressBarss = makeCircleProgressProps(props);
     const { textColorClasses, textColorStyles } =
       useTextColors(CircleProgressBarss);
 

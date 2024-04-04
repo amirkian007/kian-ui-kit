@@ -6,6 +6,7 @@ export function isCssColor(color?: string | null | false): boolean {
 interface colorArgs {
   background?: ColorValue, text?: ColorValue
 }
+
 export function useColor(colors:colorArgs) {
   const classes: string[] = [];
   const styles: any = {}
@@ -17,6 +18,7 @@ export function useColor(colors:colorArgs) {
       classes.push(`text-${colors.text}`);
     }
   }
+  
   if (colors.background) {
     if (isCssColor(colors.background)) {
       styles.backgroundColor = colors.background
