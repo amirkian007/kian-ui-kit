@@ -1,0 +1,22 @@
+@use 'sass:map'
+@use '../../styles/settings'
+@use './variables' as *
+@use '../../styles/tools'
+
+.v-circle-progress
+    --v-icon-size-multiplier: 1
+    @include tools.flexCenter
+    @each $name in settings.$sizes
+      &--size-#{$name}
+        height: calc(var(--v-icon-size-multiplier) * #{map.get($circle-progress-sizes, $name)})
+        width: calc(var(--v-icon-size-multiplier) * #{map.get($circle-progress-sizes, $name)})
+ 
+    .v-circle-progress-spinner  
+      border: 3px solid rgba(0, 123, 255, 0.2)
+      border-top-color: currentColor
+      border-radius: 50%
+      animation: v-circle-progress-animation 1s linear infinite
+
+@keyframes v-circle-progress-animation
+  100% 
+    transform: rotate(360deg)

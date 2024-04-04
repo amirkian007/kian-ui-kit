@@ -1,0 +1,35 @@
+@use 'sass:math';
+@use 'sass:map';
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+// Defaults
+// if false, disabled buttons will be greyed out
+
+$circle-progress-border-color: settings.$border-color-root !default;
+$circle-progress-border-radius: 12px !default;
+$circle-progress-border-style: settings.$border-style-root !default;
+$circle-progress-border-thin-width: thin !default;
+$circle-progress-border-width: 0 !default;
+
+$circle-progress-size: 32px !default;
+$circle-progress-underlay-color: rgba(var(--v-border-color), var(--v-border-opacity)) !default;
+
+$circle-progress-border: (
+  $circle-progress-border-color,
+  $circle-progress-border-style,
+  $circle-progress-border-width,
+  $circle-progress-border-thin-width
+) !default;
+
+$circle-progress-sizes: () !default;
+$circle-progress-sizes: tools.map-deep-merge(
+  (
+    'x-small': 1em,
+    'small': 1.25em,
+    'default': 1.5em, 
+    'large': 1.7em,
+    'x-large': 2em,
+  ),
+  $circle-progress-sizes
+);
