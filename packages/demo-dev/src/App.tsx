@@ -39,7 +39,13 @@ function App() {
           prependIcon='mdi mdi-account-box-multiple'>tonal</Button>
       </div>
       <div style={{'marginTop':'20px'}}>
-      <Button variant='flat' color='hot' >downlaod</Button>
+      <Button variant='flat' color='hot' size={'large'} >loading</Button>
+      </div>
+      <div style={{'marginTop':'20px'}}>
+      <Button variant='outlined' color='hot' size={'large'} loading>default</Button>
+      </div>
+      <div style={{'marginTop':'20px'}}>
+      <Button  color='hot' size={'x-small'} >x-small</Button>
 
       </div>
       <Button color='green' icon='mdi mdi-account-box-multiple' variant='outlined'>downlaod</Button>

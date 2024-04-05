@@ -49,12 +49,7 @@ export const CircleProgressBar = forwardRef<SVGElement, ResolvedIconProps>(
         )}
         style={{ ...textColorStyles, ...sizeStyles }}
       >
-        <div
-          className={clsx(
-            classFactory("v-circle-progress-spinner ", sizeClasses)
-          )}
-          style={sizeStyles}
-        ></div>
+
       </div>
     );
   }

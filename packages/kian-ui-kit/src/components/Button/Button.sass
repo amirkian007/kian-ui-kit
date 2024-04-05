@@ -24,12 +24,12 @@
   transition-duration: 0.28s
   transition-timing-function: settings.$standard-easing
   user-select: none
-  // border: $button-border
+  cursor: pointer
+  border: 0px
   @at-root
     @include button-sizes()
     @include button-density('height', $button-density)
 
-  // @include tools.border($button-border...)
   @include tools.variant($button-variants...)
 
   &--icon

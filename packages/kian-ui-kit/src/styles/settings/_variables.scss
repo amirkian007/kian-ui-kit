@@ -219,8 +219,8 @@ $sizes: (
 $size-scale: $spacer * 1.4 !default;
 $size-scales: (
   'x-small': -2,
-  'small': -1,
-  'default': 0,
+  'small': 1,
+  'default': 1,
   'large': 1,
   'x-large': 2
 ) !default;

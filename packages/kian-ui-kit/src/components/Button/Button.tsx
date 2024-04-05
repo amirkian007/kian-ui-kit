@@ -50,7 +50,7 @@ const defaultProps: Props = {
 
 const makeButtonProps = propsFactory(
   {
-    ...makeSizeProps("large"),
+    ...makeSizeProps(),
     ...makeComponentProps(),
     ...makeTagProps({ tag: "button" }),
     ...makeThemeProps(),

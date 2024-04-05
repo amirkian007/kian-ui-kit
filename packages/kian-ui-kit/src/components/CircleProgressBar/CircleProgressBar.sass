@@ -5,16 +5,16 @@
 
 .v-circle-progress
     @include tools.flexCenter
+    border: 3px solid currentColor
+    border-top-color: transparent
+    border-radius: 50%
+    animation: v-circle-progress-animation 0.7s linear infinite
     @each $name in settings.$sizes
       &--size-#{$name}
         height:  #{map.get($circle-progress-sizes, $name)}
-        width:  #{map.get($circle-progress-sizes, $name)}
+        width: #{map.get($circle-progress-sizes, $name)}
  
-    .v-circle-progress-spinner  
-      border: 3px solid rgba(0, 123, 255, 0.2)
-      border-top-color: currentColor
-      border-radius: 50%
-      animation: v-circle-progress-animation 1s linear infinite
+
 
 @keyframes v-circle-progress-animation
   100% 

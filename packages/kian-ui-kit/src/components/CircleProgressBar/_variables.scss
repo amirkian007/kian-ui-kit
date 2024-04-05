@@ -25,11 +25,11 @@ $circle-progress-border: (
 $circle-progress-sizes: () !default;
 $circle-progress-sizes: tools.map-deep-merge(
   (
-    'x-small': 1em,
-    'small': 1.25em,
-    'default': 1.5em, 
-    'large': 1.7em,
-    'x-large': 2em,
+    'x-small': 0.6em,
+    'small': 0.8em,
+    'default': 12px, 
+    'large': 1.3em,
+    'x-large': 1.4em,
   ),
   $circle-progress-sizes
 );
